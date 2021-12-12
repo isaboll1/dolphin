@@ -75,6 +75,10 @@ else()
   option(ENABLE_SDL "Enables SDL as a generic controller backend" OFF)
 endif()
 
+#Enable SDL2 with game controller support
+option(ENABLE_SDL_GC "Enables SDL game controller as a generic controller backend" OFF)
+
+
 if(APPLE)
   option(MACOS_USE_DEFAULT_SEARCH_PATH "Don't prioritize system library paths" OFF)
   option(SKIP_POSTPROCESS_BUNDLE "Skip postprocessing bundle for redistributability" OFF) 
