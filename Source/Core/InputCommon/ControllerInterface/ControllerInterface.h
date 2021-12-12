@@ -24,7 +24,9 @@
 #define CIFACE_USE_OSX
 #endif
 #if defined(HAVE_LIBEVDEV) && defined(HAVE_LIBUDEV)
+#if defined(USE_EVDEV)
 #define CIFACE_USE_EVDEV
+#endif
 #endif
 #if defined(USE_PIPES)
 #define CIFACE_USE_PIPES

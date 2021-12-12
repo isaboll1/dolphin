@@ -200,4 +200,21 @@ if(ENABLE_SDL)
   else()
     message(STATUS "SDL NOT found, disabling SDL input")
   endif()
+
+  if(ENABLE_SDL_GC)
+  find_package(SDL2)
+  if(SDL2_FOUND)
+    message(STATUS "Using shared SDL2")
+    set(SDL_TARGET SDL2::SDL2)
+  endif()
+  if(SDL_TARGET AND TARGET ${SDL_TARGET})
+    target_sources(inputcommon PRIVATE
+      ControllerInterface/SDL_GC/SDL_GC.cpp
+      ControllerInterface/SDL_GC/SDL_GC.h
+    )
+    target_link_libraries(inputcommon PRIVATE ${SDL_TARGET})
+    target_compile_definitions(inputcommon PRIVATE "CIFACE_USE_SDL_GC=1")
+  else()
+    message(STATUS "SDL NOT found, disabling SDL input")
+  endif()
 endif()

@@ -22,6 +22,9 @@
 #ifdef CIFACE_USE_SDL
 #include "InputCommon/ControllerInterface/SDL/SDL.h"
 #endif
+#ifdef CIFACE_USE_SDL_GC
+#include "InputCommon/ControllerInterface/SDL_GC/SDL_GC.h"
+#endif
 #ifdef CIFACE_USE_ANDROID
 #include "InputCommon/ControllerInterface/Android/Android.h"
 #endif
@@ -65,6 +68,9 @@ void ControllerInterface::Initialize(const WindowSystemInfo& wsi)
 #endif
 #ifdef CIFACE_USE_SDL
   ciface::SDL::Init();
+#endif
+#ifdef CIFACE_USE_SDL_GC
+  ciface::SDL_GC::Init();
 #endif
 #ifdef CIFACE_USE_ANDROID
 // nothing needed
@@ -184,6 +190,9 @@ void ControllerInterface::RefreshDevices(RefreshReason reason)
 #ifdef CIFACE_USE_SDL
   ciface::SDL::PopulateDevices();
 #endif
+#ifdef CIFACE_USE_SDL_GC
+  ciface::SDL_GC::PopulateDevice();
+#endif
 #ifdef CIFACE_USE_ANDROID
   ciface::Android::PopulateDevices();
 #endif
@@ -244,6 +253,9 @@ void ControllerInterface::Shutdown()
 #endif
 #ifdef CIFACE_USE_SDL
   ciface::SDL::DeInit();
+#endif
+#ifdef CIFACE_USE_SDL_GC
+  ciface::SDL_GC:DeInit();
 #endif
 #ifdef CIFACE_USE_ANDROID
 // nothing needed
